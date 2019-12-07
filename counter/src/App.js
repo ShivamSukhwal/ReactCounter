@@ -1,12 +1,21 @@
 import React, { Component } from "react";
+import randomcolor from "randomcolor";
 import "./style.css";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      count: 0
+      count: 0,
+      color: ""
     };
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.count !== prevState.count) {
+      const newColor = randomcolor();
+      this.setState({ color: newColor });
+    }
   }
 
   render() {
@@ -26,8 +35,8 @@ class App extends Component {
     };
 
     return (
-      <div>
-        <h1>{this.state.count}</h1>
+      <div style={{ borderStyle: "solid", borderColor: this.state.color }}>
+        <h1 style={{ color: this.state.color }}>{this.state.count}</h1>
         <button onClick={increment}>Increment</button>
         <button onClick={decrement}>Decrement</button>
       </div>
