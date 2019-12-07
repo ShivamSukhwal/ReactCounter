@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./style.css";
 
 class App extends Component {
   constructor() {
@@ -9,10 +10,17 @@ class App extends Component {
   }
 
   render() {
-    const Increment = () => {
+    const increment = () => {
       this.setState(prevState => {
         return {
           count: prevState.count + 1
+        };
+      });
+    };
+    const decrement = () => {
+      this.setState(prevState => {
+        return {
+          count: prevState.count - 1
         };
       });
     };
@@ -20,7 +28,8 @@ class App extends Component {
     return (
       <div>
         <h1>{this.state.count}</h1>
-        <button onClick={Increment}>Increment</button>
+        <button onClick={increment}>Increment</button>
+        <button onClick={decrement}>Decrement</button>
       </div>
     );
   }
